@@ -14,7 +14,7 @@ def convert_to_am_pm(time_str):
     hours = hours % 12 or 12
     return f"{hours}:{minutes:02d} {period}"
 
-# ---------- CSV Load Helper ----------
+
 def load_availability():
     df = pd.read_csv("Data/availability.csv")
     df['date_slot_dt'] = pd.to_datetime(df['date_slot'], format="%d-%m-%Y %H:%M")
@@ -22,7 +22,7 @@ def load_availability():
     df['time_only'] = df['date_slot_dt'].dt.strftime('%H:%M')
     return df
 
-# ---------- Tools ----------
+
 @tool
 def check_availability_by_doctor(desired_date: DateModel, doctor_name: Literal[
     'kevin anderson', 'robert martinez', 'susan davis', 'daniel miller', 'sarah wilson',
