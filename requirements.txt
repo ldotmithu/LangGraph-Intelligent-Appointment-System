@@ -1,0 +1,13 @@
+langchain
+langchain-community 
+langgraph 
+fastapi
+python-dotenv
+langchain-groq
+pydantic
+streamlit 
+pandas
+numpy
+uvicorn
+
+-e .
