@@ -4,9 +4,9 @@ from datetime import datetime,date,timedelta
 import re 
 
 class DateTimeModel(BaseModel):
-    date_time:str
+    date_time:str # Corrected field name
     
-    @field_validator("date")
+    @field_validator("date_time")
     def check_datetime(cls,v):
         if not re.match(r'^\d{2}-\d{2}-\d{4} \d{2}:\d{2}$', v):
             raise ValueError("Expected format: 'DD-MM-YYYY HH:MM'")
@@ -18,11 +18,10 @@ class DateModel(BaseModel):
     
     @field_validator("date")
     def check_date(cls,v):
-        if not re.match(r'^\d{2}-\d{2}-\d{4}',v):
+        if not re.match(r'^\d{2}-\d{2}-\d{4}$',v):
             raise ValueError("Expected format: 'DD-MM-YYYY")
         datetime.strptime(v, "%d-%m-%Y")
         return v
-    
     
 class IdentificationNumberModel(BaseModel):
     id: int 
@@ -30,6 +29,4 @@ class IdentificationNumberModel(BaseModel):
     def check_format_id(cls, v):
         if not re.match(r'^\d{7,8}$', str(v)):
             raise ValueError("ID should be 7 or 8 digits")
-        return v    
-                
-        
+        return v
